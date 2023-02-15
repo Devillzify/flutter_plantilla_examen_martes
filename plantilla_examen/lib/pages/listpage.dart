@@ -18,11 +18,24 @@ class _ListPageState extends State<ListPage> {
     final usuarios = users.listaUsers;
     final size = MediaQuery.of(context).size;
     return Scaffold(
+        drawer: Drawer(
+          child: ListView(
+            children: [
+              DrawerHeader(
+                decoration: BoxDecoration(color: Colors.blue),
+                child: Text("Drawer"),
+              ),
+              ListTile()
+            ],
+          ),
+        ),
         appBar: AppBar(
           actions: [
-            IconButton(onPressed: () => {}, icon: Icon(Icons.add_card))
+            IconButton(
+                onPressed: () => {Navigator.pushNamed(context, 'dbLocal')},
+                icon: Icon(Icons.add_moderator))
           ],
-          title: const Text('ListPage'),
+          title: const Text('PeticionBasicaHTTP'),
         ),
         body: ListView.builder(
             itemCount: usuarios.length,

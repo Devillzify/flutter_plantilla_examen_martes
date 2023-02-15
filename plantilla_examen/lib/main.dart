@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:plantilla_examen/pages/pages.dart';
 import 'package:plantilla_examen/preferences/preferences.dart';
+import 'package:plantilla_examen/providers/db_provider.dart';
+import 'package:plantilla_examen/providers/user_list_provider.dart';
 import 'package:plantilla_examen/providers/user_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -8,7 +10,10 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Preferences.init();
   runApp(MultiProvider(
-    providers: [ChangeNotifierProvider(create: (context) => UserProviders())],
+    providers: [
+      ChangeNotifierProvider(create: (context) => UserProviders()),
+      ChangeNotifierProvider(create: (context) => UserListProvider())
+    ],
     child: MyApp(),
   ));
 }
@@ -23,6 +28,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'home': (context) => HomePage(),
         'list': (context) => ListPage(),
+        'dbLocal': (context) => Local()
       },
     );
   }
